@@ -194,7 +194,7 @@
                     <div class="box-body" style="max-height: 500px; overflow-y: scroll">
 
 
-                        <asp:GridView ID="GV_Kiosk_Details" class="table table-bordered table-striped table-hover" runat="server" ClientIDMode="AutoID" HeaderStyle-BackColor=" #eafafa">
+                        <asp:GridView ID="GV_Kiosk_Details" class="table table-bordered table-striped table-hover" runat="server" ClientIDMode="AutoID" HeaderStyle-BackColor=" #eafafa" OnRowDataBound="GV_Kiosk_Details_RowDataBound">
                             <Columns>
                                 <asp:TemplateField HeaderText="Select">
                                     <HeaderTemplate>

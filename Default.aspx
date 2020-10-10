@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -6,7 +6,8 @@
 <head runat="server">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Login | PCMC </title>
-
+    <!--Jquery 3.0-->
+    <script src="Dashboard/bower_components/jquery/dist/jquery.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="Dashboard/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -18,8 +19,6 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="Dashboard/plugins/iCheck/square/blue.css">
 
-    <%--  custom js--%>
-    <script src="Dashboard/js/Custom.js"></script>
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -49,13 +48,34 @@
             var encodedString = Base64.encode(s);
             return encodedString;
         }
+
+        $(document).ready(function () {
+            //fa fa-unlock
+
+            $('#' + '<%= pwddiv.ClientID %>').click(function () {
+                if ($(this).siblings('#txtPassword').attr('type') == 'text') {
+                    $(this).siblings('#txtPassword').attr('type', 'password');
+                    $(this).find('span').removeClass("fa fa-unlock").addClass("glyphicon glyphicon-lock").delay(1000);
+                }
+                else {
+                    $(this).siblings('#txtPassword').attr('type', 'text');
+                    $(this).find('span').removeClass("glyphicon glyphicon-lock").addClass("fa fa-unlock").delay(1000);
+
+                }
+            });
+
+           <%-- $('#' + '<%= pwddiv.ClientID %>').click(function () {
+                
+               
+            });--%>
+        });
     </script>
 
 
 
 
 </head>
-<body class="hold-transition login-page" style="background-color:white;">
+<body class="hold-transition login-page" style="background-color: white;">
 
     <%--<div class="row">
         <div class="col-md-12">
@@ -65,59 +85,57 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-1 col-xs-1">
             </div>
-            <div class="login-box col-md-4" style="padding-top: 100px; margin-left:70px">
-                <img src="Dashboard/images/logo.png" style="padding-left: 75px; width: 250px" />
-                <div class="login-logo">
-                    <a><b style="margin-left: -10px;">PCMC</b></a>
-                </div>
-                <!-- /.login-logo -->
-                <div class="login-box-body" style="background-color: #ffff0054;">
-                    <p class="login-box-msg">Sign in to start your session</p>
-
-                    <form runat="server">
-                        <div class="form-group has-feedback">
-
-                            <asp:TextBox ID="txtUserName" runat="server" class="form-control" placeholder="User Name" AutoCompleteType="Disabled" autocomplete="off"></asp:TextBox>
-                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <asp:TextBox ID="txtPassword" runat="server" class="form-control" oncopy="return false" onpaste="return false" oncut="return false" placeholder="Password" TextMode="Password" autocomplete="off" AutoCompleteType="Disabled"></asp:TextBox>
-
-                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-          
+            <div class="col-md-4 col-sm-10 col-xs-10" style="">
+                <div class="login-box" style="padding-top: 5rem; margin: auto; text-align: center">
+                    <img src="Dashboard/images/logo.png" style="width: 180px; height: 180px" />
+                    <div class="login-logo">
+                        <a><b style="margin-left: -10px;">PCMC</b></a>
+                    </div>
+                    <!-- /.login-logo -->
+                    <div class="login-box-body" style="background-color: #ffffab;">
+                        <p class="login-box-msg">Sign in to start your session</p>
+                        <form runat="server">
+                            <div class="form-group has-feedback">
+                                <asp:TextBox ID="txtUserName" runat="server" class="form-control" placeholder="User Name" AutoCompleteType="Disabled" autocomplete="off"></asp:TextBox>
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
                             </div>
-                            <!-- /.col -->
-                            <div class="col-xs-6">
-                                <asp:Button ID="btnLogin" runat="server" Text="Sign In" OnClientClick="return GetName();" class="btn btn-primary btn-block btn-flat" OnClick="btnLogin_Click" />
-
+                            <div class="form-group has-feedback">
+                                <asp:TextBox ID="txtPassword" runat="server" class="form-control txtPassword" oncopy="return false" onpaste="return false" oncut="return false" placeholder="Password" TextMode="Password" autocomplete="off" AutoCompleteType="Disabled"></asp:TextBox>
+                                <div runat="server" id="pwddiv" class="pwddiv" style="" title="click to show and hide password">
+                                    <span class="glyphicon glyphicon-lock form-control-feedback" id="pwdspan"></span>
+                                </div>
                             </div>
-                            <!-- /.col -->
-                        </div>
-                    </form>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-xs-6">
+                                    <asp:Button ID="btnLogin" runat="server" Text="Sign In" OnClientClick="return GetName();" class="btn btn-primary btn-block btn-flat" OnClick="btnLogin_Click" />
 
-
-
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-1 col-xs-1">
             </div>
         </div>
 
         <!-- /.login-box-body -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer" style="margin-left: 0px; color: #03a9f4; position: absolute; bottom: 0; width:100%; ">
+    <footer class="main-footer" style="margin-left: 0px; color: #03a9f4; position: absolute; bottom: 0; width: 100%;">
         <div class="pull-right  hidden-xs image">
             <img style="height: 38px; width: 77px;" src="Dashboard/dist/img/Lipi%20Blue.png" />
         </div>
-        <div style="text-align:center; padding-left:7%">
-        <strong>Copyright &copy; 2020 <u>LIPI DATA SYSTEM </u>|</strong> All rights
-            reserved.</div>
+        <div style="text-align: center; padding-left: 7%">
+            <strong>Copyright &copy; 2020 <u>LIPI DATA SYSTEM </u>|</strong> All rights
+            reserved.
+        </div>
     </footer>
 
 
@@ -127,6 +145,21 @@
     <script src="Dashboard/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="Dashboard/plugins/iCheck/icheck.min.js"></script>
+
+    <style>
+        .pwddiv {
+            height: 40px;
+            width: 15%;
+            position: absolute;
+            top: 0;
+            text-align: right;
+            right: 0;
+        }
+
+            .pwddiv:hover {
+                cursor: pointer;
+            }
+    </style>
     <script>
         $(function () {
             $('input').iCheck({

@@ -291,6 +291,7 @@ public partial class Dashboard_ReportDetail : System.Web.UI.Page
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             float[] widArr = new float[] { 200f, 220f, 220f, 220f, 220f, 220f, 220f, 220f, 250f, 280f, 220f, 250f, };
 
+
             //creating pdf document      
             Document pdfDoc = new Document(PageSize.A4.Rotate(), 5f, 5f, 10f, 5f);
             // getting writer for pdf
@@ -329,11 +330,14 @@ public partial class Dashboard_ReportDetail : System.Web.UI.Page
 
             string header1 = null;
             string header2 = null;
+            string headertop = " ";
+
 
             header1 = bank + " PCMC -HEALTH REPORT GENERATED ON " + DateTime.Now.ToString("dd MMM yyyy, HH:mm tt");
-            header2 = "REPORT";
+            header2 = " ";
             Response.AddHeader("content-disposition", "attachment;filename=PCMC_Health_Report_" + DateTime.Now.ToString("dd-MM-yy_HH:mm") + ".pdf");
 
+           // table.AddCell(GetCell(headertop, columnscount, 2));
             table.AddCell(GetCell(header1, columnscount, 1));
             table.AddCell(GetCell(header2, columnscount, 2));
 

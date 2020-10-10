@@ -72,9 +72,12 @@
             var today = new Date();
 
             var colcount = $('[id*=GV_Kiosk_Health] tr td').length;
-            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            var dateTime = date + ' ' + time;
+            //var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            //var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            //var dateTime = date + ' ' + time;
+
+            dateTime = FormatedTime(today);
+            
             var tab_text = "";
             tab_text += "<table border='2px'><tr><td colspan='12' align='center' style='background-color:#367fa9;color:white' ><h2> Kiosk Health Report Generated On -(" + dateTime + ")</h2><br/></td><tr>";
             var textRange;

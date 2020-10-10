@@ -52,7 +52,10 @@
                     tab_text += "<tr>";
                     var row = rows[j];
                     for (var i = 1, col; col = row.cells[i]; i++) {
-                        tab_text += "<td align='center' style='font-weight:400;' >" + col.innerHTML + "</td>";
+                        if(col.innerText.toString().trim()!="")
+                            tab_text += "<td align='center' style='font-weight:400;' >" + col.innerHTML + "</td>";
+                        else
+                            tab_text += "<td align='center' style='font-weight:400;' > N/A </td>";
                     }
 
                     tab_text += "</tr>";
@@ -189,7 +192,7 @@
                     <div class="box-body" style="max-height: 500px; overflow-y: scroll">
 
 
-                        <asp:GridView ID="GV_Kiosk_Details" class="table table-bordered table-striped table-hover" runat="server" ClientIDMode="AutoID" HeaderStyle-BackColor=" #eafafa">
+                        <asp:GridView ID="GV_Kiosk_Details" class="table table-bordered table-striped table-hover" runat="server" ClientIDMode="AutoID" HeaderStyle-BackColor=" #eafafa" OnRowDataBound="GV_Kiosk_Details_RowDataBound">
                             <Columns>
                                 <asp:TemplateField HeaderText="Select">
                                     <HeaderTemplate>

@@ -205,4 +205,28 @@ public partial class Dashboard_BroadcastTemplate : System.Web.UI.Page
                 Response.Write("<script type='text/javascript'>alert( 'Please Upload The File First' )</script>");
         }
     }
+
+    protected void GV_Kiosk_Details_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            GridView grid = (GridView)sender;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    if (e.Row.Cells[i].Text == "&nbsp;" || e.Row.Cells[i].Text == "")
+                    {
+                        e.Row.Cells[i].Text = "N/A";
+                    }
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+    }
 }

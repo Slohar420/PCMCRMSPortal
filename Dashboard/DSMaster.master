@@ -49,8 +49,8 @@
 
     <script type="text/javascript">
 
-     
-        function FormatedTime(date) {  // It will return time in ante meridiem / post meridiem format (added by shiv)
+       //It will return time in ante meridiem / post meridiem format (added by shiv)
+        function FormatedTime(date) { 
 
             var rDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
             var hours = date.getHours();
